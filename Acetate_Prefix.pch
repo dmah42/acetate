@@ -1,0 +1,12 @@
+//
+//  Acetate_Prefix.pch
+//  Acetate
+//
+//  Created by Dominic Hamon on 13/1/11.
+//  Copyright 2011 stripysock.com. All rights reserved.
+//
+
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
