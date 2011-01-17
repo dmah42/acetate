@@ -2,9 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2011 Dominic Hamon, StripySock.
-All rights reserved.</string>
+	<key>CFBuildDate</key>
+	<string>Sun Jan 16 16:52:18 PST 2011</string>
+	<key>CFBuildNumber</key>
+	<string>9</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -23,9 +24,16 @@ All rights reserved.</string>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>0.5a</string>
+	<key>Current Project Version</key>
+	<string>1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2011 Dominic Hamon, StripySock.
+All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>Versioning System</key>
+	<string>apple-generic</string>
 </dict>
 </plist>
