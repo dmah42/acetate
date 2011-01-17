@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -142,6 +142,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				B6A2BF2C12E3C4E5006B1E22 /* Update Build Number */,
 			);
 			buildRules = (
 			);
@@ -159,7 +160,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Acetate" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -191,6 +192,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B6A2BF2C12E3C4E5006B1E22 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# Auto Increment Version Script\n\nbuildPlist=${INFOPLIST_FILE}\n\nCFBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $buildPlist)\nCFBuildNumber=$(($CFBuildNumber + 1))\nCFBuildDate=$(date)\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $CFBuildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {

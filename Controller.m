@@ -10,15 +10,6 @@
 
 @implementation Controller
 
-- (void)windowDidLoad {
-	[super windowDidLoad];
-	
-	[toolbarPanel setFloatingPanel:YES];
-	[toolbarPanel setBecomesKeyOnlyIfNeeded:YES];
-	
-	[self.window makeKeyAndOrderFront:self];
-}
-
 - (IBAction)toggleToolbarPanel:(id)sender {
 	if ([toolbarPanel isVisible]) {
 		[toolbarPanel orderOut:sender];
@@ -41,6 +32,22 @@
 
 
 // app delegate overrides
+- (void)applicationDidFinishLaunching:(NSNotification*) aNotification {
+	[toolbarPanel setFloatingPanel:YES];
+	[toolbarPanel setBecomesKeyOnlyIfNeeded:YES];
+	
+	[self.window makeKeyAndOrderFront:self];
+	
+	// print some info
+	NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+	NSString *appVersionNumber = [infoDict objectForKey:@"CFBundleVersion"];
+    NSString *buildNumber = [infoDict valueForKey:@"CFBuildNumber"];
+    NSString *buildDateString = [infoDict objectForKey:@"CFBuildDate"];
+	
+	NSLog(@"Acetate version %@, build %d on %@",
+		  appVersionNumber, buildNumber, buildDateString);
+}
+
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication 
 					 hasVisibleWindows:(BOOL)flag {
 	if (flag == NO) {
