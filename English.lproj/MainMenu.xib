@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1060</int>
+		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">10H574</string>
 		<string key="IBDocument.InterfaceBuilderVersion">804</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="544"/>
-			<integer value="533"/>
+			<integer value="545"/>
+			<integer value="534"/>
 			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -1016,15 +1016,6 @@
 				<object class="NSView" key="NSWindowView" id="404212519">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
-					<object class="NSMutableArray" key="NSSubviews">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSView" id="277689072">
-							<reference key="NSNextResponder" ref="404212519"/>
-							<int key="NSvFlags">274</int>
-							<string key="NSFrameSize">{723, 637}</string>
-							<reference key="NSSuperview" ref="404212519"/>
-						</object>
-					</object>
 					<string key="NSFrameSize">{723, 586}</string>
 					<reference key="NSSuperview"/>
 				</object>
@@ -1037,7 +1028,7 @@
 			<object class="NSWindowTemplate" id="965570297">
 				<int key="NSWindowStyleMask">145</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{88, 453}, {78, 359}}</string>
+				<string key="NSWindowRect">{{88, 443}, {88, 369}}</string>
 				<int key="NSWTFlags">-1535639552</int>
 				<string key="NSWindowTitle">Toolbar</string>
 				<string key="NSWindowClass">NSPanel</string>
@@ -1046,7 +1037,29 @@
 				<object class="NSView" key="NSWindowView" id="533537587">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
-					<string key="NSFrameSize">{78, 359}</string>
+					<object class="NSMutableArray" key="NSSubviews">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSColorWell" id="314360800">
+							<reference key="NSNextResponder" ref="533537587"/>
+							<int key="NSvFlags">268</int>
+							<object class="NSMutableSet" key="NSDragTypes">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSArray" key="set.sortedObjects">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSColor pasteboard type</string>
+								</object>
+							</object>
+							<string key="NSFrame">{{22, 20}, {44, 23}}</string>
+							<reference key="NSSuperview" ref="533537587"/>
+							<bool key="NSEnabled">YES</bool>
+							<bool key="NSIsBordered">YES</bool>
+							<object class="NSColor" key="NSColor">
+								<int key="NSColorSpace">1</int>
+								<bytes key="NSRGB">MSAxIDAAA</bytes>
+							</object>
+						</object>
+					</object>
+					<string key="NSFrameSize">{88, 369}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -2332,17 +2345,8 @@
 						<reference key="object" ref="404212519"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="277689072"/>
 						</object>
 						<reference key="parent" ref="107354677"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">535</int>
-						<reference key="object" ref="277689072"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-						<reference key="parent" ref="404212519"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">541</int>
@@ -2361,12 +2365,21 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">545</int>
 						<reference key="object" ref="533537587"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="314360800"/>
+						</object>
 						<reference key="parent" ref="965570297"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">549</int>
 						<reference key="object" ref="825972727"/>
 						<reference key="parent" ref="466310130"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">563</int>
+						<reference key="object" ref="314360800"/>
+						<reference key="parent" ref="533537587"/>
 					</object>
 				</object>
 			</object>
@@ -2529,13 +2542,6 @@
 					<string>534.IBViewIntegration.shadowColor</string>
 					<string>534.IBViewIntegration.shadowOffsetHeight</string>
 					<string>534.IBViewIntegration.shadowOffsetWidth</string>
-					<string>535.CustomClassName</string>
-					<string>535.IBPluginDependency</string>
-					<string>535.IBViewBoundsToFrameTransform</string>
-					<string>535.IBViewIntegration.shadowBlurRadius</string>
-					<string>535.IBViewIntegration.shadowColor</string>
-					<string>535.IBViewIntegration.shadowOffsetHeight</string>
-					<string>535.IBViewIntegration.shadowOffsetWidth</string>
 					<string>544.IBEditorWindowLastContentRect</string>
 					<string>544.IBPluginDependency</string>
 					<string>544.IBWindowTemplateEditedContentRect</string>
@@ -2544,6 +2550,8 @@
 					<string>549.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>56.ImportedFromIB2</string>
+					<string>563.IBPluginDependency</string>
+					<string>563.IBViewBoundsToFrameTransform</string>
 					<string>57.IBEditorWindowLastContentRect</string>
 					<string>57.IBPluginDependency</string>
 					<string>57.ImportedFromIB2</string>
@@ -2721,9 +2729,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{44, 220}, {723, 586}}</string>
+					<string>{{364, 137}, {723, 586}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{44, 220}, {723, 586}}</string>
+					<string>{{364, 137}, {723, 586}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -2731,29 +2739,24 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform"/>
 					<real value="0.0"/>
-					<object class="NSColor" id="634133238">
+					<object class="NSColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MAA</bytes>
 					</object>
 					<real value="0.0"/>
 					<real value="0.0"/>
-					<string>CustomView</string>
+					<string>{{96, 441}, {88, 369}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUCgAABCXAAAA</bytes>
-					</object>
-					<real value="0.0"/>
-					<reference ref="634133238"/>
-					<real value="0.0"/>
-					<real value="0.0"/>
-					<string>{{88, 453}, {78, 359}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{88, 453}, {78, 359}}</string>
+					<string>{{96, 441}, {88, 369}}</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AUGwAABDhwAAA</bytes>
+					</object>
 					<string>{{319, 562}, {186, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -2804,7 +2807,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">558</int>
+			<int key="maxID">563</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2915,6 +2918,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSBrowser.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSColorWell</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSColorWell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3452,7 +3463,7 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
+			<integer value="1050" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>

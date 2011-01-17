@@ -11,7 +11,10 @@
 @interface CustomView : NSView {
 	NSImage* canvas;
 	NSBezierPath* path;
+	NSColor* brushColor;
 	BOOL shouldDrawPath;
 }
+
+- (void)setBrushColor:(NSColor *) color;
 
 @end

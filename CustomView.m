@@ -12,18 +12,23 @@
 
 @implementation CustomView
 
-// TODO: copy to a new image on resize
-
 - (void)awakeFromNib {
 	NSRect viewRect = [self bounds];
 	NSSize canvasSize = viewRect.size;
 	canvas = [[NSImage alloc] initWithSize:canvasSize];
-	shouldDrawPath = NO;	
+	shouldDrawPath = NO;
+	brushColor = [[NSColor yellowColor] retain];
 }
 
 - (void)dealloc {
+	[brushColor release];
 	[canvas dealloc];
     [super dealloc];
+}
+
+- (void)setBrushColor:(NSColor *)color {
+	[brushColor release];
+	brushColor = [color retain];
 }
 
 // drawing events
@@ -99,7 +104,7 @@
 		// draw the path to the canvas
 		if (shouldDrawPath) {
 			[canvas lockFocus];
-			[[NSColor yellowColor] set];
+			[brushColor set];
 			[path stroke];	
 			[canvas unlockFocus];
 		}

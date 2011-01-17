@@ -7,6 +7,7 @@
 //
 
 #import "Controller.h"
+#import "CustomView.h"
 
 @implementation Controller
 
@@ -17,6 +18,13 @@
 		[toolbarPanel orderFront:sender];
 	}
 }
+
+- (void)changeColor:(id) sender {
+	NSColorPanel* colorPanel = (NSColorPanel*) sender;
+	CustomView* customView = [self.window contentView];
+	[customView setBrushColor:[colorPanel color]];
+}
+	 
 
 // window delegate overrides
 - (void)windowWillClose:(NSNotification*) notification {
@@ -29,7 +37,6 @@
 		closed_window = [notification object];
 	}
 }
-
 
 // app delegate overrides
 - (void)applicationDidFinishLaunching:(NSNotification*) aNotification {
