@@ -206,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# Auto Increment Version Script\n\nbuildPlist=${INFOPLIST_FILE}\n\nCFBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $buildPlist)\nCFBuildNumber=$(($CFBuildNumber + 1))\nCFBuildDate=$(date)\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $CFBuildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
+			shellScript = "# Auto Increment Version Script\n\nbuildPlist=${INFOPLIST_FILE}\n\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nCFBundleVersion=$(($CFBundleVersion + 1))\nCFBuildDate=$(date)\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -242,14 +242,23 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Acetate_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				INFOPLIST_FILE = "Acetate-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Acetate;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -258,12 +267,23 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ALTIVEC_EXTENSIONS = NO;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Acetate_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Acetate-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Acetate;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
