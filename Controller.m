@@ -12,6 +12,7 @@
 @implementation Controller
 
 - (IBAction)toggleToolbarPanel:(id)sender {
+	NSLog(@"Toggling toolbar panel");
 	if ([toolbarPanel isVisible]) {
 		[toolbarPanel orderOut:sender];
 	} else {
@@ -48,11 +49,11 @@
 	// print some info
 	NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
 	NSString *appVersionNumber = [infoDict objectForKey:@"CFBundleVersion"];
-    NSString *buildNumber = [infoDict valueForKey:@"CFBuildNumber"];
+    NSString *appVersionString = [infoDict valueForKey:@"CFBundleShortVersionString"];
     NSString *buildDateString = [infoDict objectForKey:@"CFBuildDate"];
 	
 	NSLog(@"Acetate version %@, build %d on %@",
-		  appVersionNumber, buildNumber, buildDateString);
+		  appVersionString, appVersionNumber, buildDateString);
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication 

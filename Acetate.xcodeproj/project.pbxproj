@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B69A50FD12E25D120016BC3B /* Acetate-icon.icns */; };
+		B6A2C09712E6A090006B1E22 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09612E6A090006B1E22 /* pencil.png */; };
+		B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09812E6A0DD006B1E22 /* pushpin.png */; };
+		B6A2C09B12E6A261006B1E22 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09A12E6A261006B1E22 /* point.png */; };
 		B6E2ECC612E0283B00A66A31 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC112E0283B00A66A31 /* Controller.m */; };
 		B6E2ECC712E0283B00A66A31 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC312E0283B00A66A31 /* CustomView.m */; };
 		B6E2ECC812E0283B00A66A31 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC512E0283B00A66A31 /* MainWindow.m */; };
@@ -25,6 +28,9 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Acetate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acetate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69A50FD12E25D120016BC3B /* Acetate-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Acetate-icon.icns"; sourceTree = "<group>"; };
+		B6A2C09612E6A090006B1E22 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		B6A2C09812E6A0DD006B1E22 /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
+		B6A2C09A12E6A261006B1E22 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
 		B6E2ECC012E0283B00A66A31 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		B6E2ECC112E0283B00A66A31 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		B6E2ECC212E0283B00A66A31 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
@@ -114,6 +120,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B6A2C09A12E6A261006B1E22 /* point.png */,
+				B6A2C09812E6A0DD006B1E22 /* pushpin.png */,
+				B6A2C09612E6A090006B1E22 /* pencil.png */,
 				B69A50FD12E25D120016BC3B /* Acetate-icon.icns */,
 				B6E2ECF512E02AE300A66A31 /* MainMenu.xib */,
 				B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */,
@@ -188,6 +197,9 @@
 				B6E2ECD512E0287500A66A31 /* version.plist in Resources */,
 				B6E2ECF712E02AE300A66A31 /* MainMenu.xib in Resources */,
 				B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */,
+				B6A2C09712E6A090006B1E22 /* pencil.png in Resources */,
+				B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */,
+				B6A2C09B12E6A261006B1E22 /* point.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +303,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -305,7 +320,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEAD_CODE_STRIPPING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

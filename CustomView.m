@@ -16,6 +16,9 @@
 	NSRect viewRect = [self bounds];
 	NSSize canvasSize = viewRect.size;
 	canvas = [[NSImage alloc] initWithSize:canvasSize];
+	
+	NSAssert(canvas != nil, @"Failed to initialize canvas");
+	
 	shouldDrawPath = NO;
 	brushColor = [[NSColor yellowColor] retain];
 }
@@ -28,6 +31,10 @@
 
 - (void)setBrushColor:(NSColor *)color {
 	[brushColor release];
+	
+	NSLog(@"Changing color to %.2f %.2f %.2f",
+		  [color redComponent], [color greenComponent], [color blueComponent]);
+	
 	brushColor = [color retain];
 }
 
