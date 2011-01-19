@@ -17,5 +17,6 @@
 }
 
 - (IBAction)toggleToolbarPanel:(id)sender;
+- (IBAction)togglePushPin:(id)sender;
 
 @end
