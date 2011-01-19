@@ -120,10 +120,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B6A2C09A12E6A261006B1E22 /* point.png */,
-				B6A2C09812E6A0DD006B1E22 /* pushpin.png */,
-				B6A2C09612E6A090006B1E22 /* pencil.png */,
-				B69A50FD12E25D120016BC3B /* Acetate-icon.icns */,
+				B6A2C0AF12E6A8F9006B1E22 /* Images */,
 				B6E2ECF512E02AE300A66A31 /* MainMenu.xib */,
 				B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */,
 				B6E2ECCF12E0287500A66A31 /* ReadMe.txt */,
@@ -139,6 +136,17 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6A2C0AF12E6A8F9006B1E22 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B69A50FD12E25D120016BC3B /* Acetate-icon.icns */,
+				B6A2C09A12E6A261006B1E22 /* point.png */,
+				B6A2C09812E6A0DD006B1E22 /* pushpin.png */,
+				B6A2C09612E6A090006B1E22 /* pencil.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,7 +320,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -326,7 +334,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
