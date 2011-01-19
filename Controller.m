@@ -20,6 +20,25 @@
 	}
 }
 
+- (IBAction)togglePushPin:(id)sender {
+	NSButton* pushpin = (NSButton*) sender;
+	NSInteger state = [pushpin state];
+	switch (state) {
+		case NSOffState:
+			[self.window setLevel:NSNormalWindowLevel];
+			break;
+		case NSOnState:
+			[self.window setLevel:NSFloatingWindowLevel];
+			break;
+		case NSMixedState:
+			NSAssert(false, @"Unexpected mixed state for pushpin");
+			break;
+		default:
+			NSAssert1(false, @"Unknown state %d for pushpin", state);
+			break;
+	}
+}
+
 - (void)changeColor:(id) sender {
 	NSColorPanel* colorPanel = (NSColorPanel*) sender;
 	CustomView* customView = [self.window contentView];
