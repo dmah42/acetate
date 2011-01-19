@@ -18,7 +18,9 @@
     self = [super initWithContentRect:contentRect
 				  styleMask:(NSResizableWindowMask | NSClosableWindowMask)
 				  backing:NSBackingStoreBuffered defer:NO];
+	NSAssert(self != nil, @"Failed to initialize Main window");
     if (self != nil) {
+		NSLog(@"Main window initialized");
 		[self setAlphaValue:1.0];
         [self setOpaque:NO];
 	}
