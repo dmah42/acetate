@@ -11,6 +11,8 @@
 
 @interface Controller : NSWindowController {
 	IBOutlet NSPanel* toolbarPanel;
+	IBOutlet NSButtonCell* pencilTool;
+	IBOutlet NSButtonCell* pointTool;
 	@private
 		NSWindow* closed_window;
 		BOOL toolbar_was_visible;
@@ -18,5 +20,6 @@
 
 - (IBAction)toggleToolbarPanel:(id)sender;
 - (IBAction)togglePushPin:(id)sender;
+- (IBAction)setActiveTool:(id)sender;
 
 @end
