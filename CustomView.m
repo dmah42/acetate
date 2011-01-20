@@ -10,7 +10,17 @@
 #import "CustomView.h"
 #import <AppKit/AppKit.h>
 
+#define LINE_WIDTH	4.0
+#define POINT_SIZE	8.0
+
 @implementation CustomView
+
+- (NSPoint) convertMousePointToViewLocation:(NSPoint) pt {
+	NSPoint loc = pt;
+    loc.x -= [self frame].origin.x;
+    loc.y -= [self frame].origin.y;	
+	return loc;
+}
 
 - (void)awakeFromNib {
 	NSRect viewRect = [self bounds];
@@ -21,6 +31,8 @@
 	
 	shouldDrawPath = NO;
 	brushColor = [[NSColor yellowColor] retain];
+	
+	activeTool = TOOL_PENCIL;
 }
 
 - (void)dealloc {
@@ -38,27 +50,49 @@
 	brushColor = [color retain];
 }
 
+- (void)setActiveTool:(Tool) tool {
+	activeTool = tool;
+}
+
 // drawing events
 - (void)mouseDown:(NSEvent *)theEvent {    
-    NSPoint loc = [theEvent locationInWindow];
-    loc.x -= [self frame].origin.x;
-    loc.y -= [self frame].origin.y;
+	NSPoint loc = [self convertMousePointToViewLocation:[theEvent locationInWindow]];
     
-    path = [[NSBezierPath bezierPath] retain];
+	switch (activeTool) {
+		case TOOL_PENCIL:
+			path = [[NSBezierPath bezierPath] retain];
 	
-	[path setLineWidth:4.0];
-    [path moveToPoint:loc];
-	shouldDrawPath = YES;
+			[path setLineWidth:LINE_WIDTH];
+			[path moveToPoint:loc];
+			shouldDrawPath = YES;
+			break;
+			
+		case TOOL_POINT: {
+			const float halfPointSize = POINT_SIZE / 2;
+			NSRect ovalRect = NSMakeRect(loc.x - halfPointSize, loc.y - halfPointSize,
+										 POINT_SIZE, POINT_SIZE);
+			path = [[NSBezierPath bezierPathWithOvalInRect:ovalRect] retain];
+			shouldDrawPath = YES;
+			[self setNeedsDisplay:YES];
+		}	break;
+	};
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
-	NSPoint loc = [theEvent locationInWindow];
-    loc.x -= [self frame].origin.x;
-    loc.y -= [self frame].origin.y;
+	NSPoint loc = [self convertMousePointToViewLocation:[theEvent locationInWindow]];
     
-    [path lineToPoint:loc];
-	shouldDrawPath = YES;
-    [self setNeedsDisplay:YES];
+	switch (activeTool) {
+		case TOOL_PENCIL:
+			[path lineToPoint:loc];
+			shouldDrawPath = YES;
+			[self setNeedsDisplay:YES];
+			break;
+			
+		case TOOL_POINT:
+			// TODO: draw point on mouse up?
+			shouldDrawPath = NO;
+			break;
+	}
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
@@ -111,8 +145,21 @@
 		// draw the path to the canvas
 		if (shouldDrawPath) {
 			[canvas lockFocus];
-			[brushColor set];
-			[path stroke];	
+			
+			switch (activeTool) {
+				case TOOL_PENCIL:
+					[brushColor set];
+					[path stroke];
+					break;
+					
+				case TOOL_POINT:
+					[[NSColor blackColor] set];
+					[path stroke];
+					
+					[brushColor set];
+					[path fill];
+					break;
+			}
 			[canvas unlockFocus];
 		}
 	

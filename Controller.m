@@ -39,6 +39,24 @@
 	}
 }
 
+- (IBAction)setActiveTool:(id)sender {
+	NSMatrix* tools = (NSMatrix*)sender;
+	id selectedCell = [tools selectedCell];
+	NSAssert(selectedCell != nil, @"No selected tool");
+	
+	NSButtonCell* selectedButtonCell = (NSButtonCell*) selectedCell;
+	
+	CustomView* customView = [self.window contentView];
+	
+	if (selectedButtonCell == pointTool) {
+		[customView setActiveTool:TOOL_POINT];
+	} else if (selectedButtonCell == pencilTool) {
+		[customView setActiveTool:TOOL_PENCIL];
+	} else {
+		NSAssert(false, @"Unexpected tool button");
+	}
+}
+
 - (void)changeColor:(id) sender {
 	NSColorPanel* colorPanel = (NSColorPanel*) sender;
 	CustomView* customView = [self.window contentView];
