@@ -13,6 +13,7 @@
 	IBOutlet NSPanel* toolbarPanel;
 	IBOutlet NSButtonCell* pencilTool;
 	IBOutlet NSButtonCell* pointTool;
+	IBOutlet NSButtonCell* eraserTool;
 	@private
 		NSWindow* closed_window;
 		BOOL toolbar_was_visible;

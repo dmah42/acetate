@@ -9,13 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 typedef enum eTool {
+	TOOL_PENCIL,
 	TOOL_POINT,
-	TOOL_PENCIL
+	TOOL_ERASER
 } Tool;
 
 @interface CustomView : NSView {
 	@private
-		NSImage* canvas;
+		NSImage* resultCanvas;
+		NSImage* drawCanvas;
+		NSImage* eraseCanvas;
 		NSBezierPath* path;
 		NSColor* brushColor;
 		Tool activeTool;
