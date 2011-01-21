@@ -48,13 +48,14 @@
 	
 	CustomView* customView = [self.window contentView];
 	
-	if (selectedButtonCell == pointTool) {
+	if (selectedButtonCell == pointTool)
 		[customView setActiveTool:TOOL_POINT];
-	} else if (selectedButtonCell == pencilTool) {
+	else if (selectedButtonCell == pencilTool)
 		[customView setActiveTool:TOOL_PENCIL];
-	} else {
+	else if (selectedButtonCell == eraserTool)
+		[customView setActiveTool:TOOL_ERASER];
+	else			
 		NSAssert(false, @"Unexpected tool button");
-	}
 }
 
 - (void)changeColor:(id) sender {
