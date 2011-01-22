@@ -6,10 +6,28 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B66CEE0412EAD100007785C6 /* Distribution */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B66CEE0D12EAD11B007785C6 /* Build configuration list for PBXAggregateTarget "Distribution" */;
+			buildPhases = (
+				B66CEE0312EAD100007785C6 /* ShellScript */,
+			);
+			dependencies = (
+				B66CEE0812EAD109007785C6 /* PBXTargetDependency */,
+			);
+			name = Distribution;
+			productName = Distribution;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B6081CF912E7F84D003D220F /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = B6081CF812E7F84D003D220F /* eraser.png */; };
 		B66CED5412EABC21007785C6 /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = B66CED5312EABC21007785C6 /* balloon.png */; };
+		B66CEDE512EACEE0007785C6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66CEDE412EACEE0007785C6 /* Sparkle.framework */; };
+		B66CEDF212EACF07007785C6 /* Sparkle.framework in Copy Sparkle framework */ = {isa = PBXBuildFile; fileRef = B66CEDE412EACEE0007785C6 /* Sparkle.framework */; };
+		B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B66CEDF412EAD027007785C6 /* dsa_pub.pem */; };
 		B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B69A50FD12E25D120016BC3B /* Acetate-icon.icns */; };
 		B6A2C09712E6A090006B1E22 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09612E6A090006B1E22 /* pencil.png */; };
 		B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09812E6A0DD006B1E22 /* pushpin.png */; };
@@ -23,6 +41,30 @@
 		B6E2ECF712E02AE300A66A31 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6E2ECF512E02AE300A66A31 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B66CEE0712EAD109007785C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090 /* Acetate */;
+			remoteInfo = Acetate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B66CEDF012EACEF3007785C6 /* Copy Sparkle framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B66CEDF212EACF07007785C6 /* Sparkle.framework in Copy Sparkle framework */,
+			);
+			name = "Copy Sparkle framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -31,6 +73,8 @@
 		8D1107320486CEB800E47090 /* Acetate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acetate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6081CF812E7F84D003D220F /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
 		B66CED5312EABC21007785C6 /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon.png; sourceTree = "<group>"; };
+		B66CEDE412EACEE0007785C6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		B66CEDF412EAD027007785C6 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		B69A50FD12E25D120016BC3B /* Acetate-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Acetate-icon.icns"; sourceTree = "<group>"; };
 		B6A2C09612E6A090006B1E22 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		B6A2C09812E6A0DD006B1E22 /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
@@ -55,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				B66CEDE512EACEE0007785C6 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +122,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B66CEDE412EACEE0007785C6 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -124,6 +170,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B66CEDF412EAD027007785C6 /* dsa_pub.pem */,
 				B6A2C0AF12E6A8F9006B1E22 /* Images */,
 				B6E2ECF512E02AE300A66A31 /* MainMenu.xib */,
 				B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */,
@@ -162,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Acetate" */;
 			buildPhases = (
+				B66CEDF012EACEF3007785C6 /* Copy Sparkle framework */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -198,6 +246,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Acetate */,
+				B66CEE0412EAD100007785C6 /* Distribution */,
 			);
 		};
 /* End PBXProject section */
@@ -216,12 +265,26 @@
 				B6A2C09B12E6A261006B1E22 /* point.png in Resources */,
 				B6081CF912E7F84D003D220F /* eraser.png in Resources */,
 				B66CED5412EABC21007785C6 /* balloon.png in Resources */,
+				B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B66CEE0312EAD100007785C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -o errexit\n\n[ $BUILD_STYLE = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nVERSION_STRING=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://stripysock.com/download\"\nRELEASENOTES_URL=\"http://stripysock.com/products/acetate/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"$PROJECT_DIR/dsa_priv.pem\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(LC_TIME=en_US date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign < \"$KEYCHAIN_PRIVKEY_NAME\" \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\"; false; }\n\ncat <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION_STRING\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/Projects/Coding/Acetate/build/Release/$ARCHIVE_FILENAME'\" stripysock.com:download/\necho scp \"'$WD/appcast.xml'\" stripysock.com:products/acetate/appcast.xml";
+		};
 		B6A2BF2C12E3C4E5006B1E22 /* Update Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +315,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B66CEE0812EAD109007785C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Acetate */;
+			targetProxy = B66CEE0712EAD109007785C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B6E2ECF512E02AE300A66A31 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
@@ -264,11 +335,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B66CEE0512EAD100007785C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Distribution;
+			};
+			name = Debug;
+		};
+		B66CEE0612EAD100007785C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Distribution;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -295,6 +391,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ALTIVEC_EXTENSIONS = NO;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -351,6 +451,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B66CEE0D12EAD11B007785C6 /* Build configuration list for PBXAggregateTarget "Distribution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B66CEE0512EAD100007785C6 /* Debug */,
+				B66CEE0612EAD100007785C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Acetate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
