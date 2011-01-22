@@ -14,6 +14,9 @@
 #define LINE_WIDTH		4.0
 #define POINT_SIZE		8.0
 
+#define BG_ALPHA			0.15
+#define LIVE_RESIZE_ALPHA	0.5
+
 @implementation CustomView
 
 - (NSPoint) convertMousePointToViewLocation:(NSPoint) pt {
@@ -29,7 +32,7 @@
 	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];
 	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
 	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
-
+	
 	NSAssert(drawCanvas != nil, @"Failed to initialize canvas");
 	NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
 	NSAssert(resultCanvas != nil, @"Failed");
@@ -58,14 +61,15 @@
 }
 
 - (void)setActiveTool:(Tool) tool {
-	// TODO: when switching to drawing tool from erase tool, we need to copy the result
-	// into the drawing and clear the erase canvas
-	
 	if (activeTool == TOOL_ERASER && tool != TOOL_ERASER) {
 		// copy image contents
 		[drawCanvas lockFocus];
-		[resultCanvas compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+		[resultCanvas drawAtPoint:NSZeroPoint 
+						 fromRect:NSZeroRect
+						operation:NSCompositeCopy 
+						 fraction:1.0];
 		[drawCanvas unlockFocus];
+		[drawCanvas recache];
 		
 		// reinit erase canvas
 		[eraseCanvas dealloc];
@@ -138,29 +142,29 @@
 - (void)viewDidEndLiveResize {
 	NSRect viewRect = [self bounds];
 	NSSize canvasSize = viewRect.size;
-	NSImage* newDrawCanvas = [[NSImage alloc] initWithSize:canvasSize];	
-	NSImage* newEraseCanvas = [[NSImage alloc] initWithSize:canvasSize];	
-	
-	// copy image contents
-	[newDrawCanvas lockFocus];
-
-	// TODO: fix the offset here
-	// copy the old canvas to the new one
-	[drawCanvas compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
-	[newDrawCanvas unlockFocus];
-	
 	[drawCanvas dealloc];
-	drawCanvas = newDrawCanvas;
-	
+	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];	
+
 	// copy image contents
-	[newEraseCanvas lockFocus];
+	[drawCanvas lockFocus];
 	
+//	[[NSColor redColor] set];
+//	NSRectFill(viewRect);
+
 	// copy the old canvas to the new one
-	[eraseCanvas compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
-	[newEraseCanvas unlockFocus];
+	[resultCanvas drawAtPoint:NSMakePoint(0,canvasSize.height - resultCanvas.size.height)
+					 fromRect:NSZeroRect
+					operation:NSCompositeCopy 
+					 fraction:1.0];
+	[drawCanvas unlockFocus];
+	[drawCanvas recache];
 	
+	// reinit erase and result canvas
 	[eraseCanvas dealloc];
-	eraseCanvas = newEraseCanvas;
+	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
+
+	[resultCanvas dealloc];
+	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
 	
 	shouldDrawPath = NO;
 	[self setNeedsDisplay:YES];
@@ -170,13 +174,13 @@
 	if ([self inLiveResize]) {
 		// Clear the drawing rect to mostly opaque
 		NSColor* color = [NSColor whiteColor];
-		color = [color colorWithAlphaComponent:0.6];
+		color = [color colorWithAlphaComponent:LIVE_RESIZE_ALPHA];
 		[color set];
 		NSRectFill([self frame]);
 	} else {
 		// transparent fill
 		NSColor* bgColor = [NSColor whiteColor];
-		bgColor = [bgColor colorWithAlphaComponent:0.1];
+		bgColor = [bgColor colorWithAlphaComponent:BG_ALPHA];
 		[bgColor set];
 	
 		NSRectFill([self frame]);
@@ -193,6 +197,7 @@
 					[path stroke];
 
 					[eraseCanvas unlockFocus];
+					[eraseCanvas recache];
 				}	break;
 					
 				case TOOL_PENCIL:
@@ -200,6 +205,7 @@
 					[brushColor set];
 					[path stroke];
 					[drawCanvas unlockFocus];
+					[drawCanvas recache];
 					break;
 					
 				case TOOL_POINT:
@@ -210,6 +216,7 @@
 					[brushColor set];
 					[path fill];
 					[drawCanvas unlockFocus];
+					[drawCanvas recache];
 					break;
 			}
 		}
@@ -221,6 +228,7 @@
 		[eraseCanvas compositeToPoint:NSZeroPoint operation:NSCompositeDestinationOut];
 
 		[resultCanvas unlockFocus];
+		[resultCanvas recache];
 		
 		// and write the result canvas to the view
 		[resultCanvas compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver];
