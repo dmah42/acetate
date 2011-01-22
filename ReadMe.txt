@@ -1,7 +1,7 @@
 Acetate
 
 Build Requirements
-Mac OS X 10.5, Xcode 3.2
+Mac OS X 10.6, Xcode 3.2
 
 Runtime Requirements
-Mac OS X 10.5
+Mac OS X 10.6
