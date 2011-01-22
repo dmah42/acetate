@@ -9,6 +9,8 @@
 #import "Controller.h"
 #import "CustomView.h"
 
+#import <AppKit/AppKit.h>
+
 @implementation Controller
 
 - (IBAction)toggleToolbarPanel:(id)sender {
@@ -17,24 +19,47 @@
 		[toolbarPanel orderOut:sender];
 	} else {
 		[toolbarPanel orderFront:sender];
+		[toolbarPanel setLevel:[self.window level]];
 	}
 }
+
 
 - (IBAction)togglePushPin:(id)sender {
 	NSButton* pushpin = (NSButton*) sender;
 	NSInteger state = [pushpin state];
 	switch (state) {
 		case NSOffState:
-			[self.window setLevel:NSNormalWindowLevel];
+			[self.window setMovable:YES];
 			break;
 		case NSOnState:
-			[self.window setLevel:NSFloatingWindowLevel];
+			[self.window setMovable:NO];
 			break;
 		case NSMixedState:
 			NSAssert(false, @"Unexpected mixed state for pushpin");
 			break;
 		default:
 			NSAssert1(false, @"Unknown state %d for pushpin", state);
+			break;
+	}	
+}
+
+- (IBAction)toggleFloating:(id)sender {
+	NSButton* floater = (NSButton*) sender;
+	NSInteger state = [floater state];
+	switch (state) {
+		case NSOffState:
+			[toolbarPanel setLevel:NSNormalWindowLevel];
+			[self.window setLevel:NSNormalWindowLevel];
+			break;
+		case NSOnState:
+			[toolbarPanel setLevel:NSFloatingWindowLevel];
+			[self.window setLevel:NSFloatingWindowLevel];
+			break;
+		case NSMixedState:
+			NSAssert(false, @"Unexpected mixed state for floater");
+			break;
+		default:
+			NSAssert1(false, @"Unknown state %d for floater", state);
 			break;
 	}
 }

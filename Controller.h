@@ -19,6 +19,7 @@
 		BOOL toolbar_was_visible;
 }
 
+- (IBAction)toggleFloating:(id)sender;
 - (IBAction)toggleToolbarPanel:(id)sender;
 - (IBAction)togglePushPin:(id)sender;
 - (IBAction)setActiveTool:(id)sender;
