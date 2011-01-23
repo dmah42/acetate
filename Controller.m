@@ -103,20 +103,37 @@
 }
 
 // app delegate overrides
++ (void)initialize {
+	if (self == [Controller class]) {
+		// print some info
+		NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+		NSString *appVersionNumber = [infoDict objectForKey:@"CFBundleVersion"];
+		NSString *appVersionString = [infoDict valueForKey:@"CFBundleShortVersionString"];
+		NSString *buildDateString = [infoDict objectForKey:@"CFBuildDate"];
+		
+		NSLog(@"Acetate version %@, build %d on %@",
+			  appVersionString, appVersionNumber, buildDateString);
+		
+		// set defaults
+		NSString* defaultsFile = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+		NSDictionary* defaultsDict = [NSDictionary dictionaryWithContentsOfFile:defaultsFile];
+		NSLog(@"Setting defaults:");
+		NSEnumerator* defaultsEnum = [defaultsDict keyEnumerator];
+		id key;
+		while ((key = [defaultsEnum nextObject])) {
+			NSLog(@"  %@ -> %@", key, [defaultsDict valueForKey:key]);
+		}
+		
+		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+		[userDefaults registerDefaults:defaultsDict];
+	}
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification*) aNotification {
 	[toolbarPanel setFloatingPanel:YES];
 	[toolbarPanel setBecomesKeyOnlyIfNeeded:YES];
 	
 	[self.window makeKeyAndOrderFront:self];
-	
-	// print some info
-	NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-	NSString *appVersionNumber = [infoDict objectForKey:@"CFBundleVersion"];
-    NSString *appVersionString = [infoDict valueForKey:@"CFBundleShortVersionString"];
-    NSString *buildDateString = [infoDict objectForKey:@"CFBuildDate"];
-	
-	NSLog(@"Acetate version %@, build %d on %@",
-		  appVersionString, appVersionNumber, buildDateString);
 }
 
 - (BOOL) applicationShouldHandleReopen:(NSApplication*)theApplication 
