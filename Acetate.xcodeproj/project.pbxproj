@@ -29,6 +29,7 @@
 		B66CEDF212EACF07007785C6 /* Sparkle.framework in Copy Sparkle framework */ = {isa = PBXBuildFile; fileRef = B66CEDE412EACEE0007785C6 /* Sparkle.framework */; };
 		B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B66CEDF412EAD027007785C6 /* dsa_pub.pem */; };
 		B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B66CEEDC12EBF5E9007785C6 /* Defaults.plist */; };
+		B66CF01F12ECA1D8007785C6 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = B66CF01E12ECA1D8007785C6 /* License.txt */; };
 		B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B69A50FD12E25D120016BC3B /* Acetate-icon.icns */; };
 		B6A2C09712E6A090006B1E22 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09612E6A090006B1E22 /* pencil.png */; };
 		B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09812E6A0DD006B1E22 /* pushpin.png */; };
@@ -36,8 +37,6 @@
 		B6E2ECC612E0283B00A66A31 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC112E0283B00A66A31 /* Controller.m */; };
 		B6E2ECC712E0283B00A66A31 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC312E0283B00A66A31 /* CustomView.m */; };
 		B6E2ECC812E0283B00A66A31 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECC512E0283B00A66A31 /* MainWindow.m */; };
-		B6E2ECD412E0287500A66A31 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = B6E2ECCF12E0287500A66A31 /* ReadMe.txt */; };
-		B6E2ECD512E0287500A66A31 /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6E2ECD012E0287500A66A31 /* version.plist */; };
 		B6E2ECD812E028BA00A66A31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2ECD612E028BA00A66A31 /* main.m */; };
 		B6E2ECF712E02AE300A66A31 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6E2ECF512E02AE300A66A31 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
@@ -77,6 +76,7 @@
 		B66CEDE412EACEE0007785C6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B66CEDF412EAD027007785C6 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		B66CEEDC12EBF5E9007785C6 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		B66CF01E12ECA1D8007785C6 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		B69A50FD12E25D120016BC3B /* Acetate-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Acetate-icon.icns"; sourceTree = "<group>"; };
 		B6A2C09612E6A090006B1E22 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		B6A2C09812E6A0DD006B1E22 /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
@@ -88,8 +88,6 @@
 		B6E2ECC412E0283B00A66A31 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		B6E2ECC512E0283B00A66A31 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Acetate-Info.plist"; sourceTree = "<group>"; };
-		B6E2ECCF12E0287500A66A31 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
-		B6E2ECD012E0287500A66A31 /* version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = version.plist; sourceTree = "<group>"; };
 		B6E2ECD612E028BA00A66A31 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B6E2ECD712E028BA00A66A31 /* Acetate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acetate_Prefix.pch; sourceTree = "<group>"; };
 		B6E2ECF612E02AE300A66A31 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -172,12 +170,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B66CF01E12ECA1D8007785C6 /* License.txt */,
 				B66CEDF412EAD027007785C6 /* dsa_pub.pem */,
 				B6A2C0AF12E6A8F9006B1E22 /* Images */,
 				B6E2ECF512E02AE300A66A31 /* MainMenu.xib */,
 				B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */,
-				B6E2ECCF12E0287500A66A31 /* ReadMe.txt */,
-				B6E2ECD012E0287500A66A31 /* version.plist */,
 				B66CEEDC12EBF5E9007785C6 /* Defaults.plist */,
 			);
 			name = Resources;
@@ -259,8 +256,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6E2ECD412E0287500A66A31 /* ReadMe.txt in Resources */,
-				B6E2ECD512E0287500A66A31 /* version.plist in Resources */,
 				B6E2ECF712E02AE300A66A31 /* MainMenu.xib in Resources */,
 				B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */,
 				B6A2C09712E6A090006B1E22 /* pencil.png in Resources */,
@@ -270,6 +265,7 @@
 				B66CED5412EABC21007785C6 /* balloon.png in Resources */,
 				B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */,
 				B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */,
+				B66CF01F12ECA1D8007785C6 /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
