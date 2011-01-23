@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBuildDate</key>
-	<string>Sun Jan 23 00:18:28 PST 2011</string>
+	<string>Sun Jan 23 09:59:13 PST 2011</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8a</string>
+	<string>0.9b</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>305</string>
+	<string>313</string>
 	<key>Current Project Version</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
@@ -37,6 +37,8 @@ All rights reserved.</string>
 	<string>http://stripysock.com/products/acetate/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUScheduledCheckInterval</key>
+	<string>604800</string>
 	<key>Versioning System</key>
 	<string>apple-generic</string>
 </dict>
