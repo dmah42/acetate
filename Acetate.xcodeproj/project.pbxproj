@@ -28,6 +28,7 @@
 		B66CEDE512EACEE0007785C6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66CEDE412EACEE0007785C6 /* Sparkle.framework */; };
 		B66CEDF212EACF07007785C6 /* Sparkle.framework in Copy Sparkle framework */ = {isa = PBXBuildFile; fileRef = B66CEDE412EACEE0007785C6 /* Sparkle.framework */; };
 		B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B66CEDF412EAD027007785C6 /* dsa_pub.pem */; };
+		B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B66CEEDC12EBF5E9007785C6 /* Defaults.plist */; };
 		B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B69A50FD12E25D120016BC3B /* Acetate-icon.icns */; };
 		B6A2C09712E6A090006B1E22 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09612E6A090006B1E22 /* pencil.png */; };
 		B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09812E6A0DD006B1E22 /* pushpin.png */; };
@@ -75,6 +76,7 @@
 		B66CED5312EABC21007785C6 /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon.png; sourceTree = "<group>"; };
 		B66CEDE412EACEE0007785C6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B66CEDF412EAD027007785C6 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		B66CEEDC12EBF5E9007785C6 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		B69A50FD12E25D120016BC3B /* Acetate-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Acetate-icon.icns"; sourceTree = "<group>"; };
 		B6A2C09612E6A090006B1E22 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		B6A2C09812E6A0DD006B1E22 /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B6E2ECCE12E0287500A66A31 /* Acetate-Info.plist */,
 				B6E2ECCF12E0287500A66A31 /* ReadMe.txt */,
 				B6E2ECD012E0287500A66A31 /* version.plist */,
+				B66CEEDC12EBF5E9007785C6 /* Defaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				B6081CF912E7F84D003D220F /* eraser.png in Resources */,
 				B66CED5412EABC21007785C6 /* balloon.png in Resources */,
 				B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */,
+				B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

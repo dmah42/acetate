@@ -10,13 +10,6 @@
 #import "CustomView.h"
 #import <AppKit/AppKit.h>
 
-#define ERASER_WIDTH	8.0
-#define LINE_WIDTH		4.0
-#define POINT_SIZE		8.0
-
-#define BG_ALPHA			0.15
-#define LIVE_RESIZE_ALPHA	0.5
-
 @implementation CustomView
 
 - (NSPoint) convertMousePointToViewLocation:(NSPoint) pt {
@@ -41,6 +34,16 @@
 	brushColor = [[NSColor yellowColor] retain];
 	
 	activeTool = TOOL_PENCIL;
+	
+	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
+															  forKeyPath:@"values.bgAlpha"
+																 options:0
+																 context:nil];
+	
+	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
+															  forKeyPath:@"values.resizeAlpha"
+																 options:0
+																 context:nil];
 }
 
 - (void)dealloc {
@@ -53,10 +56,6 @@
 
 - (void)setBrushColor:(NSColor *)color {
 	[brushColor release];
-	
-	NSLog(@"Changing color to %.2f %.2f %.2f",
-		  [color redComponent], [color greenComponent], [color blueComponent]);
-	
 	brushColor = [color retain];
 }
 
@@ -93,19 +92,30 @@
 		case TOOL_ERASER:
 			path = [[NSBezierPath bezierPath] retain];
 	
-			if (activeTool == TOOL_PENCIL)
-				[path setLineWidth:LINE_WIDTH];
-			else if (activeTool == TOOL_ERASER)
-				[path setLineWidth:ERASER_WIDTH];
-				
+			if (activeTool == TOOL_PENCIL) {
+				float pencilWidth = [[NSUserDefaults standardUserDefaults] floatForKey:@"pencilWidth"];
+//				NSNumber* pencilWidth = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:pencilWidthData];
+
+				[path setLineWidth:pencilWidth];
+			} else if (activeTool == TOOL_ERASER) {
+				float eraserWidth = [[NSUserDefaults standardUserDefaults] floatForKey:@"eraserWidth"];
+//				NSNumber* eraserWidth = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:eraserWidthData];
+
+				[path setLineWidth:eraserWidth];
+			}
+			
 			[path moveToPoint:loc];
 			shouldDrawPath = YES;
 			break;
 			
 		case TOOL_POINT: {
-			const float halfPointSize = POINT_SIZE / 2;
+			float pointSize = [[NSUserDefaults standardUserDefaults] floatForKey:@"pointSize"];
+//			NSNumber* pointSizeNumber = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:pointSizeData];
+
+//			const float pointSize = [pointSizeNumber floatValue];
+			const float halfPointSize = pointSize / 2;
 			NSRect ovalRect = NSMakeRect(loc.x - halfPointSize, loc.y - halfPointSize,
-										 POINT_SIZE, POINT_SIZE);
+										 pointSize, pointSize);
 			path = [[NSBezierPath bezierPathWithOvalInRect:ovalRect] retain];
 			shouldDrawPath = YES;
 			[self setNeedsDisplay:YES];
@@ -147,9 +157,6 @@
 
 	// copy image contents
 	[drawCanvas lockFocus];
-	
-//	[[NSColor redColor] set];
-//	NSRectFill(viewRect);
 
 	// copy the old canvas to the new one
 	[resultCanvas drawAtPoint:NSMakePoint(0,canvasSize.height - resultCanvas.size.height)
@@ -174,13 +181,21 @@
 	if ([self inLiveResize]) {
 		// Clear the drawing rect to mostly opaque
 		NSColor* color = [NSColor whiteColor];
-		color = [color colorWithAlphaComponent:LIVE_RESIZE_ALPHA];
+
+		float resizeAlpha = [[NSUserDefaults standardUserDefaults] floatForKey:@"resizeAlpha"];
+//		NSNumber* resizeAlpha = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:resizeAlphaData];
+
+		color = [color colorWithAlphaComponent:resizeAlpha];
 		[color set];
 		NSRectFill([self frame]);
 	} else {
 		// transparent fill
 		NSColor* bgColor = [NSColor whiteColor];
-		bgColor = [bgColor colorWithAlphaComponent:BG_ALPHA];
+		
+		float bgAlpha = [[NSUserDefaults standardUserDefaults] floatForKey:@"bgAlpha"];
+//		NSNumber* bgAlpha = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:bgAlphaData];
+		
+		bgColor = [bgColor colorWithAlphaComponent:bgAlpha];
 		[bgColor set];
 	
 		NSRectFill([self frame]);
@@ -232,6 +247,18 @@
 		
 		// and write the result canvas to the view
 		[resultCanvas compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver];
+	}
+}
+
+// user default change
+- (void) observeValueForKeyPath:(NSString *)keyPath
+					   ofObject:(id)object
+						 change:(NSDictionary *)change
+                        context:(void *)context
+{
+    if (([keyPath isEqualToString:@"values.bgAlpha"]) ||
+		([keyPath isEqualToString:@"values.resizeAlpha"]) ) {
+		[self setNeedsDisplay:YES];
 	}
 }
 
