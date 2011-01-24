@@ -24,4 +24,6 @@
 - (IBAction)togglePushPin:(id)sender;
 - (IBAction)setActiveTool:(id)sender;
 
+- (IBAction)newFile:(id)sender;
+
 @end

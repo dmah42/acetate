@@ -20,17 +20,8 @@
 }
 
 - (void)awakeFromNib {
-	NSRect viewRect = [self bounds];
-	NSSize canvasSize = viewRect.size;
-	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	[self clear];
 	
-	NSAssert(drawCanvas != nil, @"Failed to initialize canvas");
-	NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
-	NSAssert(resultCanvas != nil, @"Failed");
-		
-	shouldDrawPath = NO;
 	brushColor = [[NSColor yellowColor] retain];
 	
 	activeTool = TOOL_PENCIL;
@@ -260,6 +251,30 @@
 		([keyPath isEqualToString:@"values.resizeAlpha"]) ) {
 		[self setNeedsDisplay:YES];
 	}
+}
+
+- (void) clear {
+	NSRect viewRect = [self bounds];
+	NSSize canvasSize = viewRect.size;
+
+	if (drawCanvas)
+		[drawCanvas dealloc];
+	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	
+	if (eraseCanvas)
+		[eraseCanvas dealloc];
+	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	
+	if (resultCanvas)
+		[resultCanvas dealloc];
+	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	
+	NSAssert(drawCanvas != nil, @"Failed to initialize canvas");
+	NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
+	NSAssert(resultCanvas != nil, @"Failed to initialize canvas");
+	
+	shouldDrawPath = NO;
+	[self setNeedsDisplay:YES];
 }
 
 @end

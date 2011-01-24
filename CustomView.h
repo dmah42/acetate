@@ -30,4 +30,6 @@ typedef enum eTool {
 
 - (NSPoint) convertMousePointToViewLocation:(NSPoint) pt;
 
+- (void)clear;
+
 @end
