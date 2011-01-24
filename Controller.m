@@ -147,4 +147,21 @@
 	return YES;
 }
 
+// file menu options
+- (void)newFile:(id)sender {
+	int iResponse = 
+	NSRunAlertPanel(@"New sheet", 
+					@"Are you sure you want to create a new sheet? This will clear your current sheet.",
+					@"OK", @"Cancel", nil);
+	switch (iResponse) {
+		case NSAlertDefaultReturn:    /* user pressed OK */
+			[[self.window contentView] clear];
+			break;
+		case NSAlertAlternateReturn:  /* user pressed Cancel */
+		case NSAlertOtherReturn:      /* user pressed the third button */
+		case NSAlertErrorReturn:      /* an error occurred */
+			break;
+	}
+}
+
 @end

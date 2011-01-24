@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBuildDate</key>
-	<string>Sun Jan 23 09:59:13 PST 2011</string>
+	<string>Sun Jan 23 18:37:55 PST 2011</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>313</string>
+	<string>325</string>
 	<key>Current Project Version</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
@@ -34,7 +34,7 @@ All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://stripysock.com/products/acetate/appcast.xml</string>
+	<string>http://stripysock.com/acetate-appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUScheduledCheckInterval</key>
