@@ -138,32 +138,38 @@
 	return YES;
 }
 
+- (void)onResize {
+	if (![self inLiveResize]) {
+		NSRect viewRect = [self bounds];
+		NSSize canvasSize = viewRect.size;
+		[drawCanvas dealloc];
+		drawCanvas = [[NSImage alloc] initWithSize:canvasSize];	
+		
+		// copy image contents
+		[drawCanvas lockFocus];
+		
+		// copy the old canvas to the new one
+		[resultCanvas drawAtPoint:NSMakePoint(0,canvasSize.height - resultCanvas.size.height)
+						 fromRect:NSZeroRect
+						operation:NSCompositeCopy 
+						 fraction:1.0];
+		[drawCanvas unlockFocus];
+		[drawCanvas recache];
+		
+		// reinit erase and result canvas
+		[eraseCanvas dealloc];
+		eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
+		
+		[resultCanvas dealloc];
+		resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
+		
+		shouldDrawPath = NO;
+		[self setNeedsDisplay:YES];		
+	}
+}
+
 - (void)viewDidEndLiveResize {
-	NSRect viewRect = [self bounds];
-	NSSize canvasSize = viewRect.size;
-	[drawCanvas dealloc];
-	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];	
-
-	// copy image contents
-	[drawCanvas lockFocus];
-
-	// copy the old canvas to the new one
-	[resultCanvas drawAtPoint:NSMakePoint(0,canvasSize.height - resultCanvas.size.height)
-					 fromRect:NSZeroRect
-					operation:NSCompositeCopy 
-					 fraction:1.0];
-	[drawCanvas unlockFocus];
-	[drawCanvas recache];
-	
-	// reinit erase and result canvas
-	[eraseCanvas dealloc];
-	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
-
-	[resultCanvas dealloc];
-	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	
-	shouldDrawPath = NO;
-	[self setNeedsDisplay:YES];
+	[self onResize];
 }
 
 - (void)drawRect:(NSRect)rect {
