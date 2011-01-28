@@ -32,4 +32,6 @@ typedef enum eTool {
 
 - (void)clear;
 
+- (void)saveToFile:(NSString*)filepath;
+
 @end

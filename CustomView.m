@@ -85,12 +85,10 @@
 	
 			if (activeTool == TOOL_PENCIL) {
 				float pencilWidth = [[NSUserDefaults standardUserDefaults] floatForKey:@"pencilWidth"];
-//				NSNumber* pencilWidth = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:pencilWidthData];
 
 				[path setLineWidth:pencilWidth];
 			} else if (activeTool == TOOL_ERASER) {
 				float eraserWidth = [[NSUserDefaults standardUserDefaults] floatForKey:@"eraserWidth"];
-//				NSNumber* eraserWidth = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:eraserWidthData];
 
 				[path setLineWidth:eraserWidth];
 			}
@@ -101,9 +99,7 @@
 			
 		case TOOL_POINT: {
 			float pointSize = [[NSUserDefaults standardUserDefaults] floatForKey:@"pointSize"];
-//			NSNumber* pointSizeNumber = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:pointSizeData];
 
-//			const float pointSize = [pointSizeNumber floatValue];
 			const float halfPointSize = pointSize / 2;
 			NSRect ovalRect = NSMakeRect(loc.x - halfPointSize, loc.y - halfPointSize,
 										 pointSize, pointSize);
@@ -132,7 +128,9 @@
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-	[path release];
+	if (path) {
+		[path release];
+	}
 	shouldDrawPath = NO;
 }
 
@@ -174,17 +172,17 @@
 		NSColor* color = [NSColor whiteColor];
 
 		float resizeAlpha = [[NSUserDefaults standardUserDefaults] floatForKey:@"resizeAlpha"];
-//		NSNumber* resizeAlpha = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:resizeAlphaData];
 
 		color = [color colorWithAlphaComponent:resizeAlpha];
 		[color set];
 		NSRectFill([self frame]);
+		
+		[self.window setDocumentEdited:YES];
 	} else {
 		// transparent fill
 		NSColor* bgColor = [NSColor whiteColor];
 		
 		float bgAlpha = [[NSUserDefaults standardUserDefaults] floatForKey:@"bgAlpha"];
-//		NSNumber* bgAlpha = (NSNumber*) [NSUnarchiver unarchiveObjectWithData:bgAlphaData];
 		
 		bgColor = [bgColor colorWithAlphaComponent:bgAlpha];
 		[bgColor set];
@@ -193,6 +191,9 @@
 	
 		// draw the path to the canvas
 		if (shouldDrawPath) {
+			
+			[self.window setDocumentEdited:YES];
+			
 			switch (activeTool) {
 				case TOOL_ERASER: {
 					[eraseCanvas lockFocus];
@@ -275,6 +276,14 @@
 	
 	shouldDrawPath = NO;
 	[self setNeedsDisplay:YES];
+}
+
+- (void)saveToFile:(NSString*)filepath {
+	NSBitmapImageRep* bm = [NSBitmapImageRep imageRepWithData:[resultCanvas TIFFRepresentation]];
+	NSData* dataRep = [bm representationUsingType:NSPNGFileType properties:nil];
+	
+	BOOL success = [dataRep writeToFile:filepath atomically:YES];
+	NSAssert1(success, @"Failed to save to %@", filepath);
 }
 
 @end
