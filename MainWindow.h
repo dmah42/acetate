@@ -12,5 +12,6 @@
 @interface MainWindow : NSWindow {
 }
 
+- (IBAction)clearAcetate:(id)sender;
 
 @end

@@ -17,13 +17,15 @@
 	@private
 		NSWindow* closed_window;
 		BOOL toolbar_was_visible;
+		NSString* filePath;
 }
 
 - (IBAction)toggleFloating:(id)sender;
 - (IBAction)toggleToolbarPanel:(id)sender;
 - (IBAction)togglePushPin:(id)sender;
 - (IBAction)setActiveTool:(id)sender;
-
-- (IBAction)newFile:(id)sender;
-
+/*
+- (IBAction)newAcetate:(id)sender;
+- (void)saveDocumentAs:(id)sender;
+*/	
 @end

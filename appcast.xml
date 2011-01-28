@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Acetate Changelog</title>
+		<link>http://stripysock.com/projects/acetate-appcast.xml</link>
+		<description>Most recent changes with links to updates.</description>
+		<language>en</language>      
+		<item>
+			<title>Version 315</title>
+			<sparkle:releaseNotesLink>http://stripysock.com/products/#acetate-release-notes-version-315</sparkle:releaseNotesLink>
+			<sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+			<pubDate>Sun, 23 Jan 2011 10:28:04 -0800</pubDate>
+			<enclosure
+				url="http://stripysock.com/download/Acetate 0.9b (315).zip"
+				sparkle:version="315"
+				sparkle:shortVersionString="0.9b"
+				type="application/octet-stream"
+				length="614425"
+				sparkle:dsaSignature="NGQ2YWYxZDgyZDE2YTM0YjUwNzc1MWQyNWFmYmQxZWZlYmFkZDZmNQo="
+			/>
+		</item>
+
+		<item>
+			<title>Version 318</title>
+			<sparkle:releaseNotesLink>http://stripysock.com/products/#acetate-release-notes-version-318</sparkle:releaseNotesLink>
+			<sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+			<pubDate>Sun, 23 Jan 2011 10:28:04 -0800</pubDate>
+			<enclosure
+				url="http://stripysock.com/download/Acetate 0.9b (318).zip"
+				sparkle:version="318"
+				sparkle:shortVersionString="0.9b"
+				type="application/octet-stream"
+				length="614425"
+				sparkle:dsaSignature="NGQ2YWYxZDgyZDE2YTM0YjUwNzc1MWQyNWFmYmQxZWZlYmFkZDZmNQo="
+			/>
+		</item>
+				
+		<item>
+			<title>Version 355</title>
+			<sparkle:releaseNotesLink>http://stripysock.com/products/#acetate-release-notes-version-355</sparkle:releaseNotesLink>
+			<sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+			<pubDate>Tue, 25 Jan 2011 21:03:46 -0800</pubDate>
+			<enclosure
+				url="http://stripysock.com/download/Acetate 0.9b (355).zip"
+				sparkle:version="355"
+				sparkle:shortVersionString="0.9b"
+				type="application/octet-stream"
+				length="615938"
+				sparkle:dsaSignature="MCwCFH3zbqWaeUru6Ln2bmowdEQvVYYdAhRXzK7AZ/Y6tSm4ObMngh66HKEZxg=="
+			/>
+		</item>
+
+
+	</channel>
+</rss>

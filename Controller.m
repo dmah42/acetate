@@ -148,20 +148,69 @@
 }
 
 // file menu options
-- (void)newFile:(id)sender {
-	int iResponse = 
-	NSRunAlertPanel(@"New sheet", 
-					@"Are you sure you want to create a new sheet? This will clear your current sheet.",
-					@"OK", @"Cancel", nil);
-	switch (iResponse) {
-		case NSAlertDefaultReturn:    /* user pressed OK */
-			[[self.window contentView] clear];
-			break;
-		case NSAlertAlternateReturn:  /* user pressed Cancel */
-		case NSAlertOtherReturn:      /* user pressed the third button */
-		case NSAlertErrorReturn:      /* an error occurred */
-			break;
+/*
+- (void)openDocument:(id)sender {
+	BOOL shouldOpen = YES;
+	if ([self.window isDocumentEdited]) {
+		int iResponse = NSRunAlertPanel(@"New sheet", 
+										@"Are you sure you want to create a new sheet? This will clear your current sheet.",
+										@"OK", @"Cancel", nil);
+		if (iResponse != NSAlertDefaultReturn) {
+			shouldOpen = NO;
+		}
+	}
+	
+	if (shouldOpen) {
+		NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+		NSArray* fileTypeArray = [NSArray arrayWithObject:@"ace"];
+		[openPanel setAllowedFileTypes:fileTypeArray];
+		[openPanel setCanChooseFiles:YES];
+		[openPanel setCanChooseDirectories:NO];
+		[openPanel setAllowsMultipleSelection:NO];
+	
+		[openPanel beginWithCompletionHandler:^(NSInteger returnCode) {
+			if (returnCode == NSFileHandlingPanelOKButton) {
+				filePath = [[openPanel URLs] objectAtIndex:0];
+				
+				NSString* title = [NSString stringWithFormat:@"Acetate - %@", filePath];
+				[self.window setTitle:title];
+
+				// TODO: create new window with image file
+				[self newAcetate:sender];
+//				[[self.window contentView] initializeWithFile:filePath];
+			}
+		}];
 	}
 }
 
+- (void)saveDocument:(id)sender {
+	if ([self.window isDocumentEdited]) {
+		if (filePath == nil) {
+			[self saveDocumentAs:sender];
+		} else {
+			[[self.window contentView] saveToFile:filePath];
+		}
+	}
+}
+
+- (void)saveDocumentAs:(id)sender {
+	NSSavePanel* savePanel = [NSSavePanel savePanel];
+	NSArray* fileTypeArray = [NSArray arrayWithObject:@"ace"];
+	[savePanel setAllowedFileTypes:fileTypeArray];
+	[savePanel setAllowsOtherFileTypes:NO];
+	[savePanel setExtensionHidden:YES];
+	[savePanel setCanSelectHiddenExtension:YES];
+	
+	if ([savePanel runModal] == NSFileHandlingPanelOKButton) {
+		filePath = [[savePanel URL] absoluteString];
+		NSString* title = [NSString stringWithFormat:@"Acetate - %@", filePath];
+		[self.window setTitle:title];
+		[[self.window contentView] saveToFile:filePath];
+	}
+}
+
+// TODO
+- (void)newAcetate:(id)sender {
+}
+*/
 @end
