@@ -19,7 +19,15 @@
 		[toolbarPanel orderOut:sender];
 	} else {
 		[toolbarPanel orderFront:sender];
-		[toolbarPanel setLevel:[self.window level]];
+			
+		NSInteger windowLevel = [self.window level];
+		if (windowLevel == NSNormalWindowLevel) {
+			[toolbarPanel setLevel:NSFloatingWindowLevel];
+		} else if (windowLevel == NSFloatingWindowLevel) {
+			[toolbarPanel setLevel:NSPopUpMenuWindowLevel];
+		} else {
+			NSAssert(false, @"Unexpected level for main window");
+		}
 	}
 }
 
@@ -48,11 +56,11 @@
 	NSInteger state = [floater state];
 	switch (state) {
 		case NSOffState:
-			[toolbarPanel setLevel:NSNormalWindowLevel];
+			[toolbarPanel setLevel:NSFloatingWindowLevel];
 			[self.window setLevel:NSNormalWindowLevel];
 			break;
 		case NSOnState:
-			[toolbarPanel setLevel:NSFloatingWindowLevel];
+			[toolbarPanel setLevel:NSPopUpMenuWindowLevel];
 			[self.window setLevel:NSFloatingWindowLevel];
 			break;
 		case NSMixedState:
@@ -102,6 +110,15 @@
 	}
 }
 
+- (void)windowDidResize:(NSNotification *)notification {
+	NSWindow* window = [notification object];
+	
+	NSAssert(window == self.window, @"Wrong window encountered");
+	
+	CustomView* customView = (CustomView*) [self.window contentView];
+	[customView onResize];
+}
+
 // app delegate overrides
 + (void)initialize {
 	if (self == [Controller class]) {
@@ -132,6 +149,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification*) aNotification {
 	[toolbarPanel setFloatingPanel:YES];
 	[toolbarPanel setBecomesKeyOnlyIfNeeded:YES];
+	[toolbarPanel setLevel:NSFloatingWindowLevel];
 	
 	[self.window makeKeyAndOrderFront:self];
 }
