@@ -39,9 +39,9 @@
 
 - (void)dealloc {
 	[brushColor release];
-	[resultCanvas dealloc];
-	[eraseCanvas dealloc];
-	[drawCanvas dealloc];
+	[resultCanvas release];
+	[eraseCanvas release];
+	[drawCanvas release];
     [super dealloc];
 }
 
@@ -62,16 +62,109 @@
 		[drawCanvas recache];
 		
 		// reinit erase canvas
-		[eraseCanvas dealloc];
+		DLOG(@"setActiveTool: releasing eraseCanvas: %@ %d", eraseCanvas, [eraseCanvas retainCount]);
+		[eraseCanvas release];
 		
 		NSRect viewRect = [self bounds];
 		NSSize canvasSize = viewRect.size;
 		eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
+		DLOG(@"setActiveTool: eraseCanvas: %@", eraseCanvas);
 
+		NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
+		
 		[self setNeedsDisplay:YES];
 	}
 	
 	activeTool = tool;
+}
+
+- (void)setDrawCanvas:(NSImage*) newImage {
+	NSRect viewRect = [self bounds];
+	NSSize canvasSize = viewRect.size;
+	
+	DLOG(@"setDrawCanvas: releasing drawCanvas: %@ %d", drawCanvas, [drawCanvas retainCount]);
+	[drawCanvas release];
+	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	DLOG(@"setDrawCanvas: drawCanvas: %@", drawCanvas);
+	NSAssert(drawCanvas != nil, @"Failed to initialize canvas");
+	
+	if (newImage != nil) {
+		// copy image contents
+		[drawCanvas lockFocus];
+	
+		// copy the old canvas to the new one
+		NSPoint blitOrigin = NSMakePoint(0,canvasSize.height - newImage.size.height);
+		DLOG(@"Blitting new image %@ to (%d, %d)", newImage, blitOrigin.x, blitOrigin.y);
+		[newImage drawAtPoint:blitOrigin
+					 fromRect:NSZeroRect
+					operation:NSCompositeCopy 
+					 fraction:1.0];
+		[drawCanvas unlockFocus];
+		[drawCanvas recache];
+	}
+	
+	// reinit erase and result canvas
+	DLOG(@"setDrawCanvas: release eraseCanvas: %@ %d", eraseCanvas, [eraseCanvas retainCount]);
+	[eraseCanvas release];
+	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	DLOG(@"setDrawCanvas: eraseCanvas: %@", eraseCanvas);
+	NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
+	
+	DLOG(@"setDrawCanvas: release resultCanvas: %@ %d", resultCanvas, [resultCanvas retainCount]);
+	[resultCanvas release];
+	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
+	DLOG(@"setDrawCanvas: resultCanvas: %@", resultCanvas);
+	NSAssert(resultCanvas != nil, @"Failed to initialize canvas");
+	
+	shouldDrawPath = NO;
+	[self setNeedsDisplay:YES];			
+}
+
+// pasteboard events
+- (IBAction)copy:(id)sender {
+	NSImage* image = resultCanvas;
+	NSPasteboard* pasteboard = [NSPasteboard generalPasteboard];
+	[pasteboard clearContents];
+	NSArray* copiedImage = [NSArray arrayWithObject:image];
+	[pasteboard writeObjects:copiedImage];
+}
+
+- (void)doPaste {
+	NSPasteboard* pasteboard = [NSPasteboard generalPasteboard];
+	NSArray* classArray = [NSArray arrayWithObject:[NSImage class]];
+	NSDictionary* options = [NSDictionary dictionary];
+	
+	BOOL ok = [pasteboard canReadObjectForClasses:classArray options:options];
+	if (ok) {
+		NSArray* objectsToPaste = [pasteboard readObjectsForClasses:classArray options:options];
+		NSImage* image = [objectsToPaste objectAtIndex:0];
+		[self setDrawCanvas:image];
+	}
+}
+
+- (void)pasteAlertEnded:(NSAlert*)alert returnCode:(NSInteger)returnCode contextInfo:(void*)contextInfo {
+	if (returnCode == NSAlertFirstButtonReturn) {
+		[self doPaste];
+	}
+	[alert release];
+}
+
+- (IBAction)paste:(id)sender {
+	if ([self.window isDocumentEdited]) {
+		NSAlert* alert = [[[NSAlert alloc] init] retain];
+		[alert addButtonWithTitle:@"OK"];
+		[alert addButtonWithTitle:@"Cancel"];
+		[alert setMessageText:@"Are you sure?"];
+		[alert setInformativeText:@"Pasting into the sheet will lose your unsaved changes."];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		
+		[alert beginSheetModalForWindow:self.window
+						  modalDelegate:self 
+						 didEndSelector:@selector(pasteAlertEnded:returnCode:contextInfo:)
+							contextInfo:nil];
+	} else {
+		[self doPaste];
+	}
 }
 
 // drawing events
@@ -140,31 +233,7 @@
 
 - (void)onResize {
 	if (![self inLiveResize]) {
-		NSRect viewRect = [self bounds];
-		NSSize canvasSize = viewRect.size;
-		[drawCanvas dealloc];
-		drawCanvas = [[NSImage alloc] initWithSize:canvasSize];	
-		
-		// copy image contents
-		[drawCanvas lockFocus];
-		
-		// copy the old canvas to the new one
-		[resultCanvas drawAtPoint:NSMakePoint(0,canvasSize.height - resultCanvas.size.height)
-						 fromRect:NSZeroRect
-						operation:NSCompositeCopy 
-						 fraction:1.0];
-		[drawCanvas unlockFocus];
-		[drawCanvas recache];
-		
-		// reinit erase and result canvas
-		[eraseCanvas dealloc];
-		eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
-		
-		[resultCanvas dealloc];
-		resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
-		
-		shouldDrawPath = NO;
-		[self setNeedsDisplay:YES];		
+		[self setDrawCanvas:resultCanvas];
 	}
 }
 
@@ -261,27 +330,7 @@
 }
 
 - (void) clear {
-	NSRect viewRect = [self bounds];
-	NSSize canvasSize = viewRect.size;
-
-	if (drawCanvas)
-		[drawCanvas dealloc];
-	drawCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	
-	if (eraseCanvas)
-		[eraseCanvas dealloc];
-	eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	
-	if (resultCanvas)
-		[resultCanvas dealloc];
-	resultCanvas = [[NSImage alloc] initWithSize:canvasSize];
-	
-	NSAssert(drawCanvas != nil, @"Failed to initialize canvas");
-	NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
-	NSAssert(resultCanvas != nil, @"Failed to initialize canvas");
-	
-	shouldDrawPath = NO;
-	[self setNeedsDisplay:YES];
+	[self setDrawCanvas:nil];
 }
 
 - (void)saveToFile:(NSString*)filepath {
