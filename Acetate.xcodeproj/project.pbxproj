@@ -30,6 +30,7 @@
 		B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B66CEDF412EAD027007785C6 /* dsa_pub.pem */; };
 		B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B66CEEDC12EBF5E9007785C6 /* Defaults.plist */; };
 		B66CF01F12ECA1D8007785C6 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = B66CF01E12ECA1D8007785C6 /* License.txt */; };
+		B66CF1D612F3AE41007785C6 /* Acetate.help in Resources */ = {isa = PBXBuildFile; fileRef = B66CF1C512F3AE41007785C6 /* Acetate.help */; };
 		B69A50FE12E25D120016BC3B /* Acetate-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B69A50FD12E25D120016BC3B /* Acetate-icon.icns */; };
 		B6A2C09712E6A090006B1E22 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09612E6A090006B1E22 /* pencil.png */; };
 		B6A2C09912E6A0DD006B1E22 /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A2C09812E6A0DD006B1E22 /* pushpin.png */; };
@@ -77,6 +78,7 @@
 		B66CEDF412EAD027007785C6 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		B66CEEDC12EBF5E9007785C6 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		B66CF01E12ECA1D8007785C6 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		B66CF1C512F3AE41007785C6 /* Acetate.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Acetate.help; sourceTree = "<group>"; };
 		B69A50FD12E25D120016BC3B /* Acetate-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Acetate-icon.icns"; sourceTree = "<group>"; };
 		B6A2C09612E6A090006B1E22 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		B6A2C09812E6A0DD006B1E22 /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B66CF1C512F3AE41007785C6 /* Acetate.help */,
 				B66CF01E12ECA1D8007785C6 /* License.txt */,
 				B66CEDF412EAD027007785C6 /* dsa_pub.pem */,
 				B6A2C0AF12E6A8F9006B1E22 /* Images */,
@@ -266,6 +269,7 @@
 				B66CEDF512EAD027007785C6 /* dsa_pub.pem in Resources */,
 				B66CEEDD12EBF5E9007785C6 /* Defaults.plist in Resources */,
 				B66CF01F12ECA1D8007785C6 /* License.txt in Resources */,
+				B66CF1D612F3AE41007785C6 /* Acetate.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

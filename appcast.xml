@@ -50,6 +50,21 @@
 			/>
 		</item>
 
+		<item>
+			<title>Version 377</title>
+			<sparkle:releaseNotesLink>http://stripysock.com/products/#acetate-release-notes-version-377</sparkle:releaseNotesLink>
+			<sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+			<pubDate>Thu, 27 Jan 2011 21:02:40 -0800</pubDate>
+			<enclosure
+				url="http://stripysock.com/download/Acetate 0.9.2b (377).zip"
+				sparkle:version="377"
+				sparkle:shortVersionString="0.9.2b"
+				type="application/octet-stream"
+				length="616560"
+				sparkle:dsaSignature="MCwCFCbFWTeg7WY67KbSCZleds9dZTahAhQl9ZKSRxKgpQ9AfMqLj0HmcT7OOA=="
+			/>
+		</item>
+
 
 	</channel>
 </rss>
