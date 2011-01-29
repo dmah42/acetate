@@ -14,4 +14,6 @@
 
 - (IBAction)clearAcetate:(id)sender;
 
+- (IBAction)cut:(id)sender;
+
 @end

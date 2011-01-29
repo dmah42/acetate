@@ -14,7 +14,7 @@
 @implementation Controller
 
 - (IBAction)toggleToolbarPanel:(id)sender {
-	NSLog(@"Toggling toolbar panel");
+	DLOG(@"Toggling toolbar panel");
 	if ([toolbarPanel isVisible]) {
 		[toolbarPanel orderOut:sender];
 	} else {
@@ -134,11 +134,11 @@
 		// set defaults
 		NSString* defaultsFile = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
 		NSDictionary* defaultsDict = [NSDictionary dictionaryWithContentsOfFile:defaultsFile];
-		NSLog(@"Setting defaults:");
+		DLOG(@"Setting defaults:");
 		NSEnumerator* defaultsEnum = [defaultsDict keyEnumerator];
 		id key;
 		while ((key = [defaultsEnum nextObject])) {
-			NSLog(@"  %@ -> %@", key, [defaultsDict valueForKey:key]);
+			DLOG(@"  %@ -> %@", key, [defaultsDict valueForKey:key]);
 		}
 		
 		NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

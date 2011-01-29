@@ -25,6 +25,9 @@ typedef enum eTool {
 		BOOL shouldDrawPath;
 }
 
+- (IBAction)copy:(id)sender;
+- (IBAction)paste:(id)sender;
+
 - (void)setBrushColor:(NSColor *) color;
 - (void)setActiveTool:(Tool) tool;
 

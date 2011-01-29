@@ -20,9 +20,10 @@
 				  backing:NSBackingStoreBuffered defer:NO];
 	NSAssert(self != nil, @"Failed to initialize Main window");
     if (self != nil) {
-		NSLog(@"Main window initialized");
+		DLOG(@"Main window initialized");
 		[self setAlphaValue:1.0];
         [self setOpaque:NO];
+		[self setHasShadow:NO];
 	}
     return self;
 }
@@ -35,11 +36,12 @@
 	if (returnCode == NSAlertFirstButtonReturn) {
 		[[self contentView] clear];
 	}
+	[alert release];
 }
 
 - (IBAction)clearAcetate:(id)sender {
 	if ([self isDocumentEdited]) {
-		NSAlert* alert = [[[NSAlert alloc] init] autorelease];
+		NSAlert* alert = [[[NSAlert alloc] init] retain];
 		[alert addButtonWithTitle:@"OK"];
 		[alert addButtonWithTitle:@"Cancel"];
 		[alert setMessageText:@"Are you sure?"];
@@ -54,5 +56,35 @@
 		[[self contentView] clear];
 	}
 }
+
+- (void)cutAlertEnded:(NSAlert*)alert returnCode:(NSInteger)returnCode contextInfo:(void*)contextInfo {
+	if (returnCode == NSAlertFirstButtonReturn) {
+		id sender = (id)contextInfo;
+		[[self contentView] copy:sender];
+		[[self contentView] clear];
+	}
+	[alert release];
+}
+
+- (IBAction)cut:(id)sender {
+	if ([self isDocumentEdited]) {
+		NSAlert* alert = [[[NSAlert alloc] init] retain];
+		[alert addButtonWithTitle:@"OK"];
+		[alert addButtonWithTitle:@"Cancel"];
+		[alert setMessageText:@"Are you sure?"];
+		[alert setInformativeText:@"Cutting will lose your unsaved changes."];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		
+		[alert beginSheetModalForWindow:self 
+						  modalDelegate:self 
+						 didEndSelector:@selector(cutAlertEnded:returnCode:contextInfo:)
+							contextInfo:(void*) sender];
+	} else {
+		[[self contentView] copy:sender];
+		[[self contentView] clear];
+	}	
+}
+
+
 
 @end
