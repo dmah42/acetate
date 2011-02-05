@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBuildDate</key>
-	<string>Fri Jan 28 21:10:05 PST 2011</string>
+	<string>Sat Feb  5 15:06:36 PST 2011</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.9.3b</string>
+	<string>0.9.5b</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>423</string>
+	<string>518</string>
 	<key>Current Project Version</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>

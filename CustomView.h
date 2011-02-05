@@ -28,11 +28,15 @@ typedef enum eTool {
 - (IBAction)copy:(id)sender;
 - (IBAction)paste:(id)sender;
 
+- (IBAction)undo:(id)sender;
+- (IBAction)redo:(id)sender;
+
 - (void)setBrushColor:(NSColor *) color;
 - (void)setActiveTool:(Tool) tool;
 
 - (NSPoint) convertMousePointToViewLocation:(NSPoint) pt;
 
+- (void)clearAndRegisterUndo;
 - (void)clear;
 
 - (void)saveToFile:(NSString*)filepath;

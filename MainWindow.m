@@ -34,7 +34,7 @@
 
 - (void)clearAlertEnded:(NSAlert*)alert returnCode:(NSInteger)returnCode contextInfo:(void*)contextInfo {
 	if (returnCode == NSAlertFirstButtonReturn) {
-		[[self contentView] clear];
+		[[self contentView] clearAndRegisterUndo];
 	}
 	[alert release];
 }
@@ -53,7 +53,7 @@
 						 didEndSelector:@selector(clearAlertEnded:returnCode:contextInfo:)
 							contextInfo:nil];
 	} else {
-		[[self contentView] clear];
+		[[self contentView] clearAndRegisterUndo];
 	}
 }
 
@@ -61,7 +61,7 @@
 	if (returnCode == NSAlertFirstButtonReturn) {
 		id sender = (id)contextInfo;
 		[[self contentView] copy:sender];
-		[[self contentView] clear];
+		[[self contentView] clearAndRegisterUndo];
 	}
 	[alert release];
 }
@@ -81,10 +81,8 @@
 							contextInfo:(void*) sender];
 	} else {
 		[[self contentView] copy:sender];
-		[[self contentView] clear];
+		[[self contentView] clearAndRegisterUndo];
 	}	
 }
-
-
 
 @end

@@ -88,7 +88,7 @@
 	else if (selectedButtonCell == eraserTool)
 		[customView setActiveTool:TOOL_ERASER];
 	else			
-		NSAssert(false, @"Unexpected tool button");
+		NSAssert(false, @"Unexpected tool button");	
 }
 
 - (void)changeColor:(id) sender {
