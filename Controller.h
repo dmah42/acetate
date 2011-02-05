@@ -11,6 +11,7 @@
 
 @interface Controller : NSWindowController {
 	IBOutlet NSPanel* toolbarPanel;
+	IBOutlet NSMatrix* toolMatrix;
 	IBOutlet NSButtonCell* pencilTool;
 	IBOutlet NSButtonCell* pointTool;
 	IBOutlet NSButtonCell* eraserTool;

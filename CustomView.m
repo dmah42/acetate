@@ -45,37 +45,34 @@
     [super dealloc];
 }
 
+- (void)createSnapshotOnUndoStack {
+	NSRect viewRect = [self bounds];
+	NSSize canvasSize = viewRect.size;
+
+	NSImage* snapshot = [[NSImage alloc] initWithSize:canvasSize];
+	DLOG(@"createSnapshot: %@", snapshot);
+	NSAssert(snapshot != nil, @"Failed to initialize snapshot");
+
+	// copy image contents
+	[snapshot lockFocus];
+	
+	// copy the old canvas to the new one
+	DLOG(@"Blitting resultCanvas %@ to snapshot %@", resultCanvas, snapshot);
+	[resultCanvas drawAtPoint:NSZeroPoint
+					 fromRect:NSZeroRect
+					operation:NSCompositeCopy 
+					 fraction:1.0];
+	[snapshot unlockFocus];
+	[snapshot recache];
+	
+	[[self undoManager] registerUndoWithTarget:self
+									  selector:@selector(setDrawCanvas:)
+										object:snapshot];
+}
+
 - (void)setBrushColor:(NSColor *)color {
 	[brushColor release];
 	brushColor = [color retain];
-}
-
-- (void)setActiveTool:(Tool) tool {
-	if (activeTool == TOOL_ERASER && tool != TOOL_ERASER) {
-		// copy image contents
-		[drawCanvas lockFocus];
-		[resultCanvas drawAtPoint:NSZeroPoint 
-						 fromRect:NSZeroRect
-						operation:NSCompositeCopy 
-						 fraction:1.0];
-		[drawCanvas unlockFocus];
-		[drawCanvas recache];
-		
-		// reinit erase canvas
-		DLOG(@"setActiveTool: releasing eraseCanvas: %@ %d", eraseCanvas, [eraseCanvas retainCount]);
-		[eraseCanvas release];
-		
-		NSRect viewRect = [self bounds];
-		NSSize canvasSize = viewRect.size;
-		eraseCanvas = [[NSImage alloc] initWithSize:canvasSize];
-		DLOG(@"setActiveTool: eraseCanvas: %@", eraseCanvas);
-
-		NSAssert(eraseCanvas != nil, @"Failed to initialize canvas");
-		
-		[self setNeedsDisplay:YES];
-	}
-	
-	activeTool = tool;
 }
 
 - (void)setDrawCanvas:(NSImage*) newImage {
@@ -91,7 +88,7 @@
 	if (newImage != nil) {
 		// copy image contents
 		[drawCanvas lockFocus];
-	
+		
 		// copy the old canvas to the new one
 		NSPoint blitOrigin = NSMakePoint(0,canvasSize.height - newImage.size.height);
 		DLOG(@"Blitting new image %@ to (%d, %d)", newImage, blitOrigin.x, blitOrigin.y);
@@ -101,6 +98,8 @@
 					 fraction:1.0];
 		[drawCanvas unlockFocus];
 		[drawCanvas recache];
+		
+		[self createSnapshotOnUndoStack];
 	}
 	
 	// reinit erase and result canvas
@@ -117,7 +116,16 @@
 	NSAssert(resultCanvas != nil, @"Failed to initialize canvas");
 	
 	shouldDrawPath = NO;
-	[self setNeedsDisplay:YES];			
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setActiveTool:(Tool) tool {
+	if (activeTool == TOOL_ERASER && tool != TOOL_ERASER) {
+		// bake the erased bits into the draw canvas when switching away
+		[self setDrawCanvas:resultCanvas];
+	}
+	
+	activeTool = tool;
 }
 
 // pasteboard events
@@ -167,6 +175,14 @@
 	}
 }
 
+- (IBAction)undo:(id)sender {
+	[[self undoManager] undo];
+}
+
+- (IBAction)redo:(id)sender {
+	[[self undoManager] redo];
+}
+
 // drawing events
 - (void)mouseDown:(NSEvent *)theEvent {    
 	NSPoint loc = [self convertMousePointToViewLocation:[theEvent locationInWindow]];
@@ -201,6 +217,20 @@
 			[self setNeedsDisplay:YES];
 		}	break;
 	};
+	
+	NSLog(@"mouseDown: setting an undo point");
+	[self createSnapshotOnUndoStack];
+	switch (activeTool) {
+		case TOOL_PENCIL:
+			[[self undoManager] setActionName:@"Draw Pencil"];
+			break;
+		case TOOL_POINT:
+			[[self undoManager] setActionName:@"Draw Point"];
+			break;
+		case TOOL_ERASER:
+			[[self undoManager] setActionName:@"Erase"];
+			break;
+	}
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
@@ -303,7 +333,7 @@
 			}
 		}
 		
-		// draw the canvases to the result canvas	
+		// draw the canvases to the result canvas
 		[resultCanvas lockFocus];
 
 		[drawCanvas compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
@@ -329,6 +359,12 @@
 	}
 }
 
+- (void) clearAndRegisterUndo {
+	[self createSnapshotOnUndoStack];
+	[[self undoManager] setActionName:@"Clear"];
+	[self clear];
+}
+
 - (void) clear {
 	[self setDrawCanvas:nil];
 }
@@ -339,6 +375,15 @@
 	
 	BOOL success = [dataRep writeToFile:filepath atomically:YES];
 	NSAssert1(success, @"Failed to save to %@", filepath);
+}
+
+- (BOOL) validateMenuItem:(NSMenuItem*) item {
+	NSLog(@"Validating %@", item);
+	if ([item action] == @selector(undo:))
+		return [[self undoManager] canUndo];
+	else if ([item action] == @selector(redo:))
+		return [[self undoManager] canRedo];
+	return YES;
 }
 
 @end
